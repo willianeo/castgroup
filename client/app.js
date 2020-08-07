@@ -21,10 +21,10 @@ app.service('Role', function() {
 });
 
 app.controller("EmployeeController", function($rootScope, $scope, $http, $cookieStore, Role) {
-    $scope.equipes = [];
-    $scope.roles = Role.getRoles();
-    $scope.rolesSelected = {};
-
+      $scope.equipes = [];
+      $scope.roles = Role.getRoles();
+      $scope.rolesSelected = {};
+      
       $scope.employeeForm = {
         "nome": "",
         "dataNascimento": "",
@@ -44,23 +44,21 @@ app.controller("EmployeeController", function($rootScope, $scope, $http, $cookie
         },
         "matricula": ""
       };
-
+      
       $scope.login = {
           "username": "",
           "password": ""
       };
-
+      
       $scope.rolesForm = {
           "username": "",
           "role": [],
           "password": ""
       }
-
-      $scope.searchEquipes = function() {
       
+      $scope.searchEquipes = function() {
         var accessToken = $cookieStore.get("accessToken");
         var tokenType = $cookieStore.get("tokenType");
-        
         $http({
           method: "GET",
           url: "http://localhost:8080/equipe/",
@@ -76,14 +74,10 @@ app.controller("EmployeeController", function($rootScope, $scope, $http, $cookie
           }
         );
       }
-
-      // HTTP POST/PUT methods for add/edit employee
-      // Call: http://localhost:8080/employee
+      
       $scope.submitEmployee = function() {
-
           var accessToken = $cookieStore.get("accessToken");
           var tokenType = $cookieStore.get("tokenType");
-
           $http({
               method: "POST",
               url: "http://localhost:8080/funcionario/",
@@ -102,14 +96,12 @@ app.controller("EmployeeController", function($rootScope, $scope, $http, $cookie
             }
           );
       };
-
+      
       $scope.submitSignup = function() {
-
         $.each($scope.rolesSelected, function(key, value) {
           if (value = true)
             $scope.rolesForm.role.push(key);
         })
-
         $http({
           method: "POST",
           url: "http://localhost:8080/api/signup",
@@ -127,7 +119,7 @@ app.controller("EmployeeController", function($rootScope, $scope, $http, $cookie
             }
           );
       }
-
+      
       $scope.submitLogin = function() {
         $http({
           method: "POST",
@@ -141,69 +133,25 @@ app.controller("EmployeeController", function($rootScope, $scope, $http, $cookie
               $cookieStore.put("accessToken", res.data.accessToken);
               $cookieStore.put("tokenType", res.data.tokenType);
               document.location="home.html";
-
             },
             function(res) { // error
               _error(res);
             }
           );
       };
-
-      $scope.createEmployee = function() {
-          _clearFormData();
-      }
-
-      // HTTP DELETE- delete employee by Id
-      // Call: http://localhost:8080/employee/{empId}
-      $scope.deleteEmployee = function(employee) {
-          $http({
-              method: 'DELETE',
-              url: '/employee/' + employee.empId
-          }).then(_success, _error);
-      };
-
-      // In case of edit
-      $scope.editEmployee = function(employee) {
-          $scope.employeeForm.empId = employee.empId;
-          $scope.employeeForm.empNo = employee.empNo;
-          $scope.employeeForm.empName = employee.empName;
-      };
-
-      // Private Method
-      // HTTP GET- get all employees collection
-      // Call: http://localhost:8080/employees
-      function _refreshEmployeeData() {
-          $http({
-              method: 'GET',
-              url: '/funcionario'
-          }).then(
-              function(res) { // success
-                  $scope.employees = res.data;
-              },
-              function(res) { // error
-                  console.log("Error: " + res.status + " : " + res.data);
-              }
-          );
-      }
-
-      function _success(res) {
-      }
-
+      
       function _error(res) {
-          
         $cookieStore.remove("accessToken");
         $cookieStore.remove("tokenType");
-
         if (res.data.error === "Unauthorized") {
                 alert("Sessão expirada");
                 document.location="login.html";
         } else if (res.data.error === "Forbidden") {
             alert("Você não tem previlégios para executar essa operação.");
         } 
-        
         console.log("Error: " + res.status + " : " + res.data);
       }
-
+      
       // Clear the form
       function _clearFormFuncionario() {
           $scope.employeeForm.nome = "";
