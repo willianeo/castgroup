@@ -14,7 +14,7 @@ Gostaria de pontuar algumas coisas que fui empurrando para o final e acabei não
     O cadastro de funcionário emitira um alerta colocando a falta de permissão em forma de mensagem.
     Para cadastrar um funcionário, você precisa ter um perfil de "ADMIM ou "PM".
     
-3)Banco de dados: Criei os perfis solicitados para o banco de dados. H2/MEM como banco de testes e H2/File como produção.
+3) Banco de dados: Criei os perfis solicitados para o banco de dados. H2/MEM como banco de testes e H2/File como produção.
 
 4) Testes: Na camada de testes, só o perfil criado para testes foi configurado.
     
