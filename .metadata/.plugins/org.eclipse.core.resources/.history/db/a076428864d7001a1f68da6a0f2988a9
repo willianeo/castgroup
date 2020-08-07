@@ -1,0 +1,19 @@
+package com.castgroup.api.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.castgroup.api.model.Endereco;
+import com.castgroup.api.model.Equipe;
+
+public interface EnderecoService {
+
+	Equipe save(Endereco equipe);
+	
+	void deleteById(Integer id);
+	
+	Optional<Endereco> findById(Integer id);
+	
+	List<Endereco> findAll();
+	
+}

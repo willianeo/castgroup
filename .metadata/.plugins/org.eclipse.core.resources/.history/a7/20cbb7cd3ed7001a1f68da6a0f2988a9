@@ -1,0 +1,5 @@
+package com.castgroup.api.model;
+
+public class FeriasForm {
+
+}

@@ -1,0 +1,24 @@
+package com.castgroup.api.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "ferias")
+public class Ferias {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private Funcionario funcionario;
+	private LocalDate inicio;
+	private LocalDate retorno;
+}

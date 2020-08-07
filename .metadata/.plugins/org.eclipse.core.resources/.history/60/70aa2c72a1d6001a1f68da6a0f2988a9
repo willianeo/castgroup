@@ -1,0 +1,32 @@
+package com.castgroup.api.security.services;
+
+import com.castgroup.api.dao.SigninDAO;
+import com.castgroup.api.model.Signin;
+import com.grokonez.jwtauthentication.model.User;
+import com.grokonez.jwtauthentication.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+   @Autowired
+   SigninDAO repository;
+
+   @Override
+   @Transactional
+   public UserDetails loadUserByUsername(String email)
+           throws UsernameNotFoundException {
+     
+       Signin signin = repository.findByEmail(email)
+                 .orElseThrow(() -> 
+                       new UsernameNotFoundException("User Not Found with email : " + email)
+       );
+
+       return UserPrinciple.build(signin);
+   }
+}

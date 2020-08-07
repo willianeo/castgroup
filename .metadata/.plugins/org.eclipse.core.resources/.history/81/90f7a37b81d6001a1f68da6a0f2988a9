@@ -1,0 +1,5 @@
+package com.castgroup.api.jwt.filter;
+
+public class JWTAuthenticationFilter {
+
+}

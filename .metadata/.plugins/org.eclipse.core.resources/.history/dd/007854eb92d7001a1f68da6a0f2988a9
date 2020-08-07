@@ -1,0 +1,97 @@
+package com.castgroup.api.service;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.castgroup.api.dao.FeriasDAO;
+import com.castgroup.api.model.Ferias;
+import com.castgroup.api.model.Funcionario;
+
+@Service
+public class FeriasServiceImpl implements FeriasService {
+
+	@Autowired
+	private FeriasDAO repository;
+	
+	@Override
+	public Ferias save(Ferias ferias) throws Exception {
+		Funcionario funcionario = ferias.getFuncionario();
+		LocalDate dataContratacao = funcionario.getDataContratacao();
+		LocalDate previsao = ferias.getInicio();
+		Period period = Period.between(dataContratacao, previsao);
+		if (period.getYears() >= 1) {
+			ferias.setRetorno(previsao.plusDays(30));
+			ferias.setFuncionario(funcionario);
+			return repository.save(ferias);
+		}
+		throw new Exception("O funcionário não pode solicitar férias antes de 1 ano de contratação.");
+	}
+
+	public void checkPeriodoFerias(List<Funcionario> equipeFuncionarios, Ferias ferias)
+			throws Exception {
+		if (equipeFuncionarios.size() <= 4) {
+			for (Funcionario funcionario: equipeFuncionarios) {
+				if (funcionario.getId() != ferias.getFuncionario().getId()
+						&& !funcionario.getFerias().isEmpty()) {
+					List<Ferias> feriass = funcionario.getFerias();
+					LocalDate ultDtFerias = feriass.get(feriass.size() -1).getRetorno();
+					LocalDate dtferias = ferias.getInicio();
+					if (ultDtFerias.isBefore(dtferias)) {
+						continue;
+					} else {
+						throw new Exception("O funcionário não pode solicitar férias antes de 1 ano de contratação.");
+					}
+				}
+			}
+		}
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+
+	@Override
+	public Optional<Ferias> findById(Integer id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public List<Ferias> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	
+	public boolean feriasVencido(Funcionario funcionario, Integer meses) {
+		List<Ferias> feriass = repository.findByIdFuncionario(funcionario.getId());
+		LocalDate lferias = (feriass.isEmpty())
+				? funcionario.getDataContratacao()
+				: feriass.get(0).getRetorno();
+		
+		LocalDate now = LocalDate.now();
+		
+		Period period = Period.between(lferias, now);
+		
+		Integer totalDiaPeriodo = period.getYears() * 365;
+		totalDiaPeriodo += period.getMonths() * 30;
+		totalDiaPeriodo += period.getDays();
+		
+		if (totalDiaPeriodo > (730 - (30 * meses))) {
+			return true;
+		}
+		return false;
+	}
+
+	public List<Ferias> findByMatriculaFuncionario(String matricula) {
+		return repository.findByMatriculaFuncionario(matricula);
+	}
+	
+
+}

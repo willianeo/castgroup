@@ -1,0 +1,5 @@
+package com.castgroup.api.security.jwt;
+
+public class JwtProvider {
+
+}

@@ -1,0 +1,21 @@
+package com.castgroup.api.model;
+
+import java.time.LocalDate;
+
+import lombok.Data;
+
+@Data
+public class FeriasForm {
+
+	private Integer id;
+	
+	private Funcionario funcionario;
+	
+	private LocalDate inicio;
+	
+	private LocalDate retorno;
+	
+	private String msg;
+	
+	private Boolean error;
+}

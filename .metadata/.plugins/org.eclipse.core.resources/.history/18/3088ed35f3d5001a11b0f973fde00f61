@@ -1,0 +1,10 @@
+package com.castgroup.api.model;
+
+import lombok.Data;
+
+@Data
+public class Equipe {
+
+	private Integer id;
+	private String nome;
+}

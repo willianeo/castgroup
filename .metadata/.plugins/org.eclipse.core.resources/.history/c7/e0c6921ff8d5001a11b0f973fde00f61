@@ -1,0 +1,27 @@
+package com.castgroup.api.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "endereco")
+public class Endereco {
+
+	@Id
+	@GeneratedValue
+	@Column(nullable = false)
+	private Integer idEndereco;
+	private String rua;
+	private Integer numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	
+}

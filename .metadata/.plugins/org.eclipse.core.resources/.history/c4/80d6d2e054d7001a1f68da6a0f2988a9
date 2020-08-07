@@ -1,0 +1,26 @@
+package com.castgroup.api.model;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class SigninForm extends BaseForm implements Form<Signin, SigninForm> {
+
+	private Integer id;
+	
+	private String email;
+	
+	private String password;
+	
+	@Override
+	public SigninForm convertModelToForm(Signin o) {
+		return modelMapper().map(o, SigninForm.class);
+	}
+
+	@Override
+	public Signin convertFormToModel(SigninForm o) {
+		return modelMapper().map(o, Signin.class);
+	}
+
+}

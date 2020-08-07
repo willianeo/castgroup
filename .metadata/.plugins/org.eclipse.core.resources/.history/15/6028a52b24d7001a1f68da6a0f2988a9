@@ -1,0 +1,5 @@
+package com.castgroup.api.controller;
+
+public class EquipeController {
+
+}

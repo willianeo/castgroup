@@ -1,0 +1,18 @@
+package com.castgroup.api.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.castgroup.api.model.Funcionario;
+
+public interface FuncionarioService {
+
+	Funcionario save(Funcionario funcionario);
+	
+	void deleteById(Integer id);
+	
+	Optional<Funcionario> findById(Integer id);
+	
+	List<Funcionario> findAll();
+	
+}

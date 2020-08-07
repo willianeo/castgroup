@@ -1,0 +1,13 @@
+package com.castgroup.api.dao;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.castgroup.api.model.Ferias;
+import com.castgroup.api.model.Funcionario;
+
+public interface FeriasDAO extends CrudRepository<Ferias, Integer> {
+
+	List<Funcionario> findBy
+}

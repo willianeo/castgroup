@@ -1,0 +1,16 @@
+package com.castgroup.api.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "equipe")
+public class Equipe {
+
+	private Integer id;
+	private String nome;
+	
+}

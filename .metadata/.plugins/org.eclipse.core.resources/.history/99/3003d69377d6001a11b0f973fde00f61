@@ -1,0 +1,7 @@
+package com.castgroup.api;
+
+@Configuration
+@EnableJdbcHttpSession
+public class Config {
+
+}

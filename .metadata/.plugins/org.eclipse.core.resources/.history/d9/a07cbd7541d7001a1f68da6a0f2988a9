@@ -1,0 +1,11 @@
+package com.castgroup.api.model;
+
+public class Form {
+	
+	private FeriasForm convertToDto(Ferias ferias) {
+	    PostDto postDto = modelMapper.map(ferias, PostDto.class);
+	    postDto.setSubmissionDate(ferias.getSubmissionDate(), 
+	        userService.getCurrentUser().getPreference().getTimezone());
+	    return postDto;
+	}
+}

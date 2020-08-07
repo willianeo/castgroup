@@ -1,0 +1,15 @@
+package com.castgroup.api.dao;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.castgroup.api.model.Ferias;
+
+@Repository
+public interface FeriasDAO extends CrudRepository<Ferias, Integer> {
+
+	@Query("SELECT f FROM Ferias f WHERE f.funcionario.id = :value")
+	Ferias findByIdFuncionario();
+
+}

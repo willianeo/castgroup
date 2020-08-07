@@ -1,0 +1,14 @@
+package com.castgroup.api.model;
+
+@Data
+public class Endereco {
+
+	private Integer idEndereco;
+	private String rua;
+	private Integer numero;
+	private String complemento;
+	private String bairro;
+	private String cidade;
+	private String estado;
+	
+}

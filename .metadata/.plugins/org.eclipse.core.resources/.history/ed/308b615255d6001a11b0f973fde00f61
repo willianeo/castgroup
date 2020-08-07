@@ -1,0 +1,5 @@
+package com.castgroup.api.dao;
+
+public class FuncionarioDAO {
+
+}

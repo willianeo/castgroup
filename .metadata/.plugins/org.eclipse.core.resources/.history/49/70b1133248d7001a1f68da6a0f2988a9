@@ -1,0 +1,8 @@
+package com.castgroup.api.model;
+
+public <T, G> interface Form {
+
+	G convertModelToForm(T o);
+	
+	G convertFormToModel(T o);
+}

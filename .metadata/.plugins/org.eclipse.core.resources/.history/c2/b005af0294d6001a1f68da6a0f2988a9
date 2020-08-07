@@ -1,0 +1,7 @@
+package com.castgroup.api.model;
+
+@Entity
+@Table
+public class Role {
+
+}

@@ -1,0 +1,18 @@
+package com.castgroup.api.model;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+
+public class Form {
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
+	
+	private FeriasForm convertToDto(Ferias ferias) {
+	    FeriasForm postDto = ModelMapper.map(ferias, FeriasForm.class);
+	    postDto.setSubmissionDate(ferias.getSubmissionDate(), 
+	        userService.getCurrentUser().getPreference().getTimezone());
+	    return postDto;
+	}
+}

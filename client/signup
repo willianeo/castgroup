@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html ng-app="EmployeeManagement">
+<head>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="app.css">
+
+	<title>Castgroup</title>
+</head>
+	<body>
+		<div ng-controller="EmployeeController">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4 content">
+				<form class="form-horizontal" ng-submit="submitSignup()">
+  					<h2>Signun</h2>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Nome</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="username" placeholder="Meu Nome" ng-model="rolesForm.username" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputType">Permissão</label>
+
+						<div class="controls" ng-repeat="role in roles">
+
+							<div class="form-check">
+							  <input class="form-check-input" id="{{ role.key }}" type="checkbox"
+							  	ng-model="rolesSelected[role.key]">
+							  <label class="form-check-label" for="defaultCheck2">
+							    {{ role.value }}
+							  </label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputStatus">Senha</label>
+						<div class="controls">
+              				<input type="password" class="form-control" id="password" placeholder="Digite sua senha" ng-model="rolesForm.password" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="controls">
+            				<input type="submit" value="Entrar" class=" form-control" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

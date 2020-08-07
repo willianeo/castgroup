@@ -1,0 +1,78 @@
+1596562867002	Delete element
+1596565555373	Delete elements
+1596565563048	Delete element
+1596565570133	Delete element
+1596567916788	Delete element
+1596567957153	Delete element
+1596568773314	Delete element
+1596578187948	Rename package 'com.castgroup.api.messaage.request'
+1596579870908	Rename field 'userRepository'
+1596579916059	Rename local variable 'user'
+1596580654599	Rename local variable 'user'
+1596581104997	Rename field 'email'
+1596581314391	Rename type 'CastController'
+1596584195907	Rename field 'userRepository'
+1596584258124	Rename type 'RoleRepository'
+1596584495776	Rename local variable 'user'
+1596584844452	Rename method 'registerUser'
+1596584918256	Rename method 'authenticateUser'
+1596586436100	Delete element
+1596594824604	Rename type 'FuncionarioService'
+1596594869972	Rename type 'ProductService'
+1596596786294	Move compilation unit
+1596596827616	Rename local variable 'funcionario'
+1596628867217	Rename field 'service'
+1596628928069	Rename local variable 'entity'
+1596632086651	Rename local variable 'entity'
+1596645408087	Rename field 'feriasDao'
+1596648642626	Rename local variable 'post'
+1596651144836	Rename type 'Form'
+1596652628956	Rename local variable 'form'
+1596652725531	Rename local variable '_form'
+1596656115063	Rename local variable 'funcionarios'
+1596656623004	Rename field 'equipe'
+1596656875116	Delete element
+1596657242108	Delete element
+1596661125331	Rename local variable 'equipe'
+1596661283875	Rename local variable 'equipe'
+1596663937560	Rename local variable 'funcionario'
+1596663989676	Rename local variable 'funcionario'
+1596665873551	Rename local variable 'funcionario'
+1596665892736	Rename type 'FuncionarioModel'
+1596666153680	Rename local variable 'funcionario'
+1596666288136	Rename local variable 'updated'
+1596680950052	Rename method 'createFerias'
+1596689739820	Rename type 'QRCodeServiceImpl'
+1596737628449	Delete element
+1596737824491	Delete element
+1596740458327	Delete element
+1596740592324	Delete element
+1596740639603	Delete element
+1596740649333	Delete element
+1596740653697	Delete element
+1596740674376	Delete element
+1596741513263	Delete element
+1596741543373	Delete element
+1596741814117	Delete element
+1596742080273	Delete element
+1596742199191	Delete element
+1596742205792	Delete element
+1596742565140	Delete element
+1596742790709	Delete element
+1596743038984	Delete element
+1596743698589	Delete element
+1596743946015	Delete element
+1596744069897	Delete element
+1596744411334	Delete element
+1596745046124	Delete element
+1596745098745	Delete element
+1596745120671	Delete element
+1596745140561	Delete element
+1596745210663	Delete element
+1596745355124	Delete element
+1596745725421	Delete element
+1596748700147	Rename type 'SpringDataRestCustomization'
+1596748831004	Rename type 'WebConfig'
+1596748994215	Delete element
+1596749646942	Delete element
+1596749650892	Delete element

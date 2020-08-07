@@ -1,0 +1,6 @@
+package com.castgroup.api.service;
+
+public interface FuncionarioService {
+
+	Funcionario save(Funcionario funcionario);
+}

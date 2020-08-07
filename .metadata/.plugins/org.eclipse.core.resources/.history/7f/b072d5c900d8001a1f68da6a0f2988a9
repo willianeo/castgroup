@@ -1,0 +1,67 @@
+package com.castgroup.api.service;
+
+import java.io.*;
+
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.MessagingException;
+
+import org.apache.commons.lang.RandomStringUtils;
+import org.slf4j.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.*;
+import com.google.zxing.common.BitMatrix;
+import reactor.core.publisher.Mono;
+
+@Service
+@Cacheable(cacheNames = "qr-code-cache", sync = true)
+public class ImageService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ImageService.class);
+
+	@Autowired
+	Email email;
+
+	public Mono<byte[]> generateQRCode(String text, int width, int height) {
+
+		Assert.hasText(text, "text must not be empty");
+		Assert.isTrue(width > 0, "width must be greater than zero");
+		Assert.isTrue(height > 0, "height must be greater than zero");
+		
+		return Mono.create(sink -> {
+			LOGGER.info("Will generate image  text=[{}], width=[{}], height=[{}]", text, width, height);
+			try {
+				ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+				BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height);
+				MatrixToImageWriter.writeToStream(matrix, MediaType.IMAGE_PNG.getSubtype(), baos, new MatrixToImageConfig());
+				
+				String path = "./data/qrcode";
+				String ext = "png";
+				File dir = new File(path);
+				String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), ext);
+				File file = new File(dir, name);
+				 
+				MatrixToImageWriter 
+		            .writeToPath(matrix, ext, file.toPath());
+				//MatrixToImageWriter.writeToFile(matrix, MediaType.IMAGE_PNG.getSubtype(), file);
+				
+				DataSource ds = new FileDataSource(file);
+				
+				email.sendEmail();
+				email.sendEmailWithAttachment(ds);
+			} catch (IOException | WriterException | MessagingException ex) {
+				sink.error(ex);
+			}
+		});
+	}
+
+	@CacheEvict(cacheNames = "qr-code-cache", allEntries = true)
+	public void purgeCache() {
+		LOGGER.info("Purging cache");
+	}
+}

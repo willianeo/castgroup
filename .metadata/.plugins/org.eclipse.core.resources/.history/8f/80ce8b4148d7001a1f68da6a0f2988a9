@@ -1,0 +1,12 @@
+package com.castgroup.api.model;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+
+public abstract class BaseForm<T, G> {
+	@Bean
+	protected ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
+
+}

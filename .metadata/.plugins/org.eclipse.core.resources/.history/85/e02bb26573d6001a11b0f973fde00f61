@@ -1,0 +1,12 @@
+package com.castgroup.api.service;
+
+import org.springframework.stereotype.Service;
+
+import com.castgroup.api.dao.FuncionarioDAO;
+
+@Service
+public class FuncionarioService {
+	
+	private FuncionarioDAO repository;
+
+}

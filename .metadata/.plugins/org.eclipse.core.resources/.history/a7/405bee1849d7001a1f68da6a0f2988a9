@@ -1,0 +1,28 @@
+package com.castgroup.api.model;
+
+import lombok.Data;
+
+@Data
+public class SigninForm extends BaseForm implements Form<Signin, SigninForm> {
+
+	private Integer id;
+	
+	private String email;
+	
+	private String password;
+
+	
+	@Override
+	public SigninForm convertModelToForm(Signin o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Signin convertFormToModel(SigninForm o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

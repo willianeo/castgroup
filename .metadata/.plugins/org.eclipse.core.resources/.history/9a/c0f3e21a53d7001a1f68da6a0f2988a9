@@ -1,0 +1,30 @@
+package com.castgroup.api.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class EnderecoForm {
+
+	private Integer id;
+	
+	private String rua;
+	
+	private Integer numero;
+	
+	private String complemento;
+	
+	private String bairro;
+	
+	private String cidade;
+	
+	private String estado;
+	
+}

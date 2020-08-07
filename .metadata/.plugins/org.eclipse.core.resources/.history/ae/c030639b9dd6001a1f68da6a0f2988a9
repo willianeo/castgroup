@@ -1,0 +1,5 @@
+package com.castgroup.api.message.response;
+
+public class JwtResponse {
+
+}

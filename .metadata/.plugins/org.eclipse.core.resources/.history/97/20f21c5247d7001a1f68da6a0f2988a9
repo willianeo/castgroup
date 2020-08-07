@@ -1,0 +1,8 @@
+package com.castgroup.api.model;
+
+public interface Form<T, G> {
+
+	protected abstract G convertModelToForm(T o);
+	
+	protected abstract G convertFormToModel(T o);
+}

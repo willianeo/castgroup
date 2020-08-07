@@ -1,0 +1,46 @@
+package com.castgroup.api.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.castgroup.api.dao.FuncionarioDAO;
+import com.castgroup.api.model.Funcionario;
+
+@Service
+public class FuncionarioServiceImpl implements FuncionarioService {
+	
+	@Autowired
+	private FuncionarioDAO repository;
+	
+	@Override
+	public Funcionario save(Funcionario entity) {
+		return repository.save(entity);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
+	}
+
+	@Override
+	public Optional<Funcionario> findById(Integer id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public List<Funcionario> findAll() {
+		return (List<Funcionario>) repository.findAll();
+	}
+
+	public List<Funcionario> findFuncionarioByEquipeId(Integer equipeId) {
+		List<Funcionario> funcionarios = repository.findFuncionarioByEquipeId(equipeId);
+
+		
+	}
+
+	
+
+}

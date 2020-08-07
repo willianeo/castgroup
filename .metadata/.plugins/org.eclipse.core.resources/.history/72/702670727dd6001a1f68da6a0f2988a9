@@ -1,0 +1,5 @@
+package com.castgroup.api.config;
+
+public class JwtAuthenticationEntryPoint {
+
+}

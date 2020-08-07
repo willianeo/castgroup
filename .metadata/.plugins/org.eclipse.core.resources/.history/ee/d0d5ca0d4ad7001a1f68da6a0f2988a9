@@ -1,0 +1,23 @@
+package com.castgroup.api.model;
+
+import java.time.LocalDate;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class FeriasForm extends BaseForm implements Form<Ferias, FeriasForm> {
+
+	private Integer id;
+	
+	private Funcionario funcionario;
+	
+	private LocalDate inicio;
+	
+	private LocalDate retorno;
+	
+	private String msg;
+	
+	private Boolean error;
+}

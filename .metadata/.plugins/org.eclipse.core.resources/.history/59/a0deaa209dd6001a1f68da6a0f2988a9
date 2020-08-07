@@ -1,0 +1,5 @@
+package com.castgroup.api.messaage.request;
+
+public class LoginForm {
+
+}

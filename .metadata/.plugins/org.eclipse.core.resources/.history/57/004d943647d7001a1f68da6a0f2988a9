@@ -1,0 +1,15 @@
+package com.castgroup.api.model;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+
+public interface Form<T, G> {
+	@Bean
+	protected ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
+	
+	protected abstract G convertModelToForm(T o);
+	
+	protected abstract G convertFormToModel(T o);
+}

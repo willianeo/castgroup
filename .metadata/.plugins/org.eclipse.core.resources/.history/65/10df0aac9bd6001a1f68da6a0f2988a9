@@ -1,0 +1,5 @@
+package com.castgroup.api.security.services;
+
+public class UserDetailsServiceImpl {
+
+}

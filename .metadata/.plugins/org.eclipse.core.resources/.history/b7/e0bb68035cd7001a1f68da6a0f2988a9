@@ -1,0 +1,24 @@
+package com.castgroup.api.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table
+public class Equipe {
+
+	@Id
+	@Column
+	@GeneratedValue
+	private Integer id;
+
+	@Column(nullable = false)
+	private String nome;
+	
+}

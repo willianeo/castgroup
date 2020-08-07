@@ -1,0 +1,38 @@
+package com.castgroup.api.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.castgroup.api.dao.EquipeDAO;
+import com.castgroup.api.model.Equipe;
+
+public class EquipeServiceImpl implements EquipeService {
+
+	@Autowired
+	private EquipeDAO equipeDao;
+	
+	@Override
+	public Equipe save(Equipe equipe) {
+		return equipeDao.save(entity);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		equipeDao.deleteById(id);
+	}
+
+	@Override
+	public Optional<Equipe> findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Equipe> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

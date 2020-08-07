@@ -1,0 +1,16 @@
+package com.castgroup.api.model;
+
+import lombok.Data;
+
+@Data
+public class SigninForm extends BaseForm
+	implements Form<T, G> {
+
+	private Integer id;
+	
+	private String email;
+	
+	private String password;
+
+	
+}

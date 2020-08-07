@@ -1,0 +1,33 @@
+package com.castgroup.api.service;
+
+import java.io.*;
+import org.slf4j.*;
+import org.springframework.cache.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.*;
+import com.google.zxing.common.BitMatrix;
+import reactor.core.publisher.Mono;
+
+@Service
+@Cacheable(cacheNames = "qr-code-cache", sync = true)
+public class ImageService {
+	public static BufferedImage generateEAN13BarcodeImage(String barcodeText) throws Exception {
+	    Barcode barcode = BarcodeFactory.createEAN13(barcodeText);
+	    //barcode.setFont(null);
+	 
+	    return BarcodeImageHandler.getImage(barcode);
+	}
+	
+	public static BufferedImage generateQRCodeImage(String barcodeText) throws Exception {
+	    ByteArrayOutputStream stream = QRCode
+	      .from(barcodeText)
+	      .withSize(250, 250)
+	      .stream();
+	    ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
+	 
+	    return ImageIO.read(bis);
+	}
+}

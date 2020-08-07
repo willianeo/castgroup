@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html ng-app="EmployeeManagement">
+<head>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="app.css">
+
+	<title>Angello Lite</title>
+</head>
+	<body>
+		<div ng-controller="EmployeeController">
+			<div class="col-md-4">
+				<h2>Login</h2>
+				<br/>
+				<a class="btn btn-primary" ng-click="main.createStory()">
+                    <span class="glyphicon">Entrar</span>
+                </a>
+			</div>
+			<div class="col-md-6 content">
+				<form class="form-horizontal" ng-submit="submitEmployee()">
+  				<h2>Funcionario</h2>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Nome</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="nome" placeholder="Meu Nome" ng-model="employeeForm.nome" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputStatus">Data de Nascimento</label>
+						<div class="controls">
+              <input type="text" class="form-control" id="dataNascimento" placeholder="Minha Data de Nascimento" ng-model="employeeForm.dataNascimento" />
+							<!--<select id="inputStatus" class="form-control" ng-model="main.currentStatus"
+									ng-options="l.name for l in main.statuses"
+									ng-change="main.setCurrentStatus(main.currentStatus)"></select>-->
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputStatus">Data Contratação</label>
+						<div class="controls">
+              <input type="text" class="form-control" id="dataNascimento" placeholder="Data da Contratação" ng-model="employeeForm.dataContratacao" />
+							<!--<select id="inputStatus" class="form-control" ng-model="main.currentStatus"
+
+									ng-options="l.name for l in main.statuses"
+									ng-change="main.setCurrentStatus(main.currentStatus)"></select>-->
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputDescription">Foto</label>
+						<div class="controls">
+              <input type="text" class="form-control" id="foto" placeholder="./data/img/minhafoto.jpg" ng-model="employeeForm.foto" />
+							<!--<textarea id="inputDescription" class="form-control" placeholder="Description" rows="3"
+									  ng-model="main.currentStory.description"></textarea>-->
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputType">Matricula</label>
+						<div class="controls">
+              				<input type="text" class="form-control" id="matricula" placeholder="DTI00019" ng-model="employeeForm.matricula" />
+							<!--<select id="inputType" class="form-control" ng-model="main.currentType"
+									ng-options="t.name for t in main.types"
+									ng-change="main.setCurrentType(main.currentType)"></select>-->
+						</div>
+					</div>
+  				<h2>Funcionario/Equipe</h2>
+					<div class="form-group" data-ng-init="searchEquipes()">
+						<label class="control-label" for="inputDescription">Equipe</label>
+						<div class="controls">
+			              <select id="equipe" class="form-control" ng-model="employeeForm.equipe"
+												ng-options="e.nome for e in equipes" ></select>
+						</div>
+					</div>
+  				<h2>Funcionario/Endereco</h2>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Rua</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="rua" placeholder="Nome da Rua" ng-model="employeeForm.endereco.rua" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Número</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="numero" placeholder="Número da Residência" ng-model="employeeForm.endereco.numero" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Complemento</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="complemento" placeholder="Complemento" ng-model="employeeForm.endereco.complemento" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Bairro</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="Bairro" placeholder="Nome do Bairro" ng-model="employeeForm.endereco.bairro" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Cidade</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="cidade" placeholder="Nome da Cidade" ng-model="employeeForm.endereco.cidade" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="inputTitle">Estado</label>
+						<div class="controls">
+							<input type="text" class="form-control" id="estado" placeholder="Nome do Estado" ng-model="employeeForm.endereco.estado" />
+						</div>
+					</div>
+					<div class="form-group">
+						<p>img abaixo</p>
+						<img ng-src="{{dataURL}}">
+					</div>
+					<div class="form-group">
+						<div class="controls">
+            				<input type="submit"  value="Submit" class=" form-control" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

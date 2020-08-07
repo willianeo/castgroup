@@ -1,0 +1,33 @@
+package com.castgroup.api.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table
+public class Signin {
+
+	@Id
+	@Column
+	@GeneratedValue
+	private Integer id;
+
+	@Column(nullable = false)
+	private String email;
+
+	@Column(nullable = false)
+	private String password;
+	
+	@OneToOne(mappedBy = "signin", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY, optional = false)
+	private Funcionario funcionario;
+}

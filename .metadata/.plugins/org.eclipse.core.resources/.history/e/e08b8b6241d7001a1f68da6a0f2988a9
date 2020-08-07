@@ -1,0 +1,10 @@
+package com.castgroup.api.model;
+
+public class Form {
+	private PostDto convertToDto(Post post) {
+	    PostDto postDto = modelMapper.map(post, PostDto.class);
+	    postDto.setSubmissionDate(post.getSubmissionDate(), 
+	        userService.getCurrentUser().getPreference().getTimezone());
+	    return postDto;
+	}
+}

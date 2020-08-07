@@ -1,0 +1,15 @@
+package com.castgroup.api.model;
+
+import java.time.LocalDate;
+
+import lombok.Data;
+
+@Data
+public class Funcionario {
+
+	private Integer id;
+	private String nome;
+	private LocalDate dataNascimento;
+	private Endereco endereco;
+	
+}

@@ -1,0 +1,24 @@
+package com.castgroup.api.model;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+
+public class BaseForm<T, G> implements Form<T, G>{
+	@Bean
+	protected ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
+
+	@Override
+	public G convertModelToForm(T o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public G convertFormToModel(T o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

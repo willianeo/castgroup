@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html ng-app="EmployeeManagement">
+<head>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+	 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-cookies.js"></script>
+
+	<script type="text/javascript" src="app.js"></script>
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="app.css">
+
+	<title>Angello Lite</title>
+</head>
+	<body>
+		<div ng-controller="EmployeeController">
+			<div class="col-md-4">
+				<h2>Menu</h2>
+				<br>
+				<a href="/funcionario">Cadastrar Funcionario</a>
+			</div>
+			<div class="col-md-6 content">
+				<p>{{ $scope.message }}</p> 
+			</div>
+		</div>
+	</body>
+</html>

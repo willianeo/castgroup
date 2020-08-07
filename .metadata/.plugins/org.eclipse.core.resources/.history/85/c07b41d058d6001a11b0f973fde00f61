@@ -1,0 +1,7 @@
+package com.castgroup.api.dao;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface FeriasDAO extends CrudRepository<Ferias, Integer> {
+
+}

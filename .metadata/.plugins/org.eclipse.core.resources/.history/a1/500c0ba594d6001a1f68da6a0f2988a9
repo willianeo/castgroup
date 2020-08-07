@@ -1,0 +1,15 @@
+package com.castgroup.api.dao;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.castgroup.api.model.Signin;
+
+@Repository
+public interface SigninDAO extends CrudRepository<Signin, Integer> {
+	
+	Optional<Signin> findByUsername(String username);
+    Boolean existsByUsername(String username);
+    Boolean existsByEmail(String email);
+    
+}

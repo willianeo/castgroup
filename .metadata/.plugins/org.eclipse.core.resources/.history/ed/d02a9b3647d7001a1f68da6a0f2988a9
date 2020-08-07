@@ -1,0 +1,27 @@
+package com.castgroup.api.model;
+
+import lombok.Data;
+
+@Data
+public class SigninForm extends Form<T, G> {
+
+	private Integer id;
+	
+	private String email;
+	
+	private String password;
+
+	@Override
+	protected G convertModelToForm(T o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected G convertFormToModel(T o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

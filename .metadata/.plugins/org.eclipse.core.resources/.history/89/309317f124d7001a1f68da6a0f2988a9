@@ -1,0 +1,98 @@
+package com.castgroup.api.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.castgroup.api.model.Equipe;
+import com.castgroup.api.model.Funcionario;
+import com.castgroup.api.security.jwt.JwtProvider;
+import com.castgroup.api.service.EquipeServiceImpl;
+import com.castgroup.api.service.FuncionarioServiceImpl;
+import com.castgroup.api.service.SigninServiceImpl;
+import com.sun.istack.logging.Logger;
+
+@RestController
+@RequestMapping("/equipe")
+public class EquipeController {
+
+	private static final Logger logger = Logger.getLogger(FuncionarioController.class);
+	
+	@Autowired
+	private EquipeServiceImpl equipeService;
+	
+	@Autowired
+	private SigninServiceImpl signinService;
+	
+	@Autowired
+	private JwtProvider jwtProvider;
+	
+	@GetMapping(path = {"/{id}"})
+	@PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
+	public ResponseEntity<?> findById(@PathVariable Integer id
+			, @RequestHeader(name = "Authorization") String token) {
+		jwtProvider.validateJwtToken(token);
+		
+		return equipeService.findById(id)
+				.map(p -> ResponseEntity.ok().body(p))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@PostMapping("/")
+	@PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Funcionario create(@RequestBody Equipe equipe
+			, @RequestHeader(name = "Authorization") String token) {
+		jwtProvider.validateJwtToken(token);
+		
+		return equipeService.save(equipe);
+	}
+	
+	@PutMapping("/{id}")
+	@PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
+	public ResponseEntity<?> update(@PathVariable(value = "id") Integer id
+			, @RequestBody Funcionario funcionario, @RequestHeader(name = "Authorization") String token) {
+		jwtProvider.validateJwtToken(token);
+		
+		return funcionarioService.findById(id).map(p -> {
+			p.setDataContratacao(funcionario.getDataContratacao());
+			p.setDataNascimento(funcionario.getDataNascimento());
+			p.setEndereco(funcionario.getEndereco());
+			p.setEquipe(funcionario.getEquipe());
+			p.setFoto(funcionario.getFoto());
+			p.setId(funcionario.getId());
+			p.setMatricula(funcionario.getMatricula());
+			p.setNome(funcionario.getNome());
+			p.setSignin(signin);
+			Funcionario updated = funcionarioService.save(p);
+			return ResponseEntity.ok().body(updated);
+			
+		}).orElse(ResponseEntity.notFound().build());
+		
+	}
+	
+	@DeleteMapping(path = {"/{id}"})
+	@PreAuthorize("hasRole('PM') or hasRole('ADMIN')")
+	public ResponseEntity<?> delete(@PathVariable Integer id
+			, @RequestHeader(name = "Authorization") String token) {
+		jwtProvider.validateJwtToken(token);
+		
+		return funcionarioService.findById(id)
+				.map(p -> {
+					funcionarioService.deleteById(id);
+					return ResponseEntity.ok().build();
+				}).orElse(ResponseEntity.notFound().build());
+	}
+	
+}

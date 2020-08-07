@@ -1,0 +1,6 @@
+package com.castgroup.api.model;
+
+@Bean
+public class Form {
+
+}
